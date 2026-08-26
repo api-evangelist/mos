@@ -1,0 +1,90 @@
+generated: '2026-08-26'
+method: probed
+source: Direct HTTPS probes of /.well-known/ paths on every Mos host, 2026-08-26
+note: 'NO WellKnown pointer is wired in apis.yml: nothing returned a 200 carrying a real document. This
+  file records a measured ABSENCE, not a served surface.'
+hosts:
+- host: mos.com
+  note: Marketing/product host (Next.js on S3+CloudFront). Every /.well-known/ path returns the S3 NoSuchKey
+    404 page. No document served.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: www.mos.com
+  note: Same origin as mos.com; identical 404s.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: api.mos.com
+  note: "AWS API Gateway behind CloudFront. Every path \u2014 including the root \u2014 answers HTTP 403\
+    \ {\"message\":\"Forbidden\"} to anonymous requests. This is the private backend for the Mos app,\
+    \ not a published developer API; no document is reachable without credentials."
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 403
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /.well-known/agent.json
+    status: 403
+    file: null
